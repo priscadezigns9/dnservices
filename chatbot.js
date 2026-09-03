@@ -247,7 +247,7 @@
         <div id="agent-selector">
             <div class="sel-title">Who would you like to speak with?</div>
             <div class="agent-sel-card" onclick="selectAgent('sierra')">
-                <img src="https://raw.githubusercontent.com/priscadezigns9/dnservices/main/assets/dnservices-icon-avatar-v2.png" alt="Sierra">
+                <img src="https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/assets/sierra_headshot.jpg" alt="Sierra" onerror="this.src='https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/logos/PRISCA_ICON_LOGO_tight.png'">
                 <div>
                     <div class="asc-name">Sierra</div>
                     <div class="asc-role">Customer Relations — Chat</div>
@@ -738,8 +738,7 @@ const STEPS = {
     "svc_taxi": {
         "bot": "Taxi Service \u2014 a dependable way to get where you need to go, with arrangements made clearly before the journey. Pre-arranged journeys, local transportation, clear communication before pickup.\n\nFares depend on distance and timing, so there's no fixed price \u2014 send your journey details and DN Services will confirm.",
         "r": [
-            { "l": "Book right here in chat", "s": "book_taxi_start", "i": "car" },
-            { "l": "Use the booking page instead", "url": "https://dnservices.priscadezigns.org/taxi-booking.html", "i": "car" },
+            { "l": "Start a booking request", "url": "https://dnservices.priscadezigns.org/taxi-booking.html", "i": "car" },
             { "l": "Chat on WhatsApp instead", "url": "https://wa.me/18687405689?text=Hi%2C%20I%27d%20like%20to%20book%20a%20taxi.", "i": "message-circle" },
             { "l": "\u2190 Back", "s": "start", "i": "arrow-left" }
         ]
@@ -747,19 +746,10 @@ const STEPS = {
     "svc_carpentry": {
         "bot": "Carpentry \u2014 careful work for useful repairs, improvements, and made-to-fit projects around your space. Repairs and adjustments, custom woodwork, furniture and fixture projects, with a clear quote before work begins.\n\nEvery job is quoted individually based on scope \u2014 share the details and DN Services will confirm.",
         "r": [
-            { "l": "Book right here in chat", "s": "book_carpentry_start", "i": "tool" },
-            { "l": "Use the booking page instead", "url": "https://dnservices.priscadezigns.org/carpentry-booking.html", "i": "tool" },
+            { "l": "Start a booking request", "url": "https://dnservices.priscadezigns.org/carpentry-booking.html", "i": "tool" },
             { "l": "Chat on WhatsApp instead", "url": "https://wa.me/18687405689?text=Hi%2C%20I%27d%20like%20a%20carpentry%20quote.", "i": "message-circle" },
             { "l": "\u2190 Back", "s": "start", "i": "arrow-left" }
         ]
-    },
-    "book_taxi_start": {
-        "bot": "Great \u2014 let's get your taxi booked. I'll ask a few quick questions, then send everything to DN Services on WhatsApp for you.\n\nWhat date do you need the taxi? (e.g. 15 September or \"tomorrow\")",
-        "custom": true
-    },
-    "book_carpentry_start": {
-        "bot": "Great \u2014 let's get your carpentry request booked. I'll ask a few quick questions, then send everything to DN Services on WhatsApp for you.\n\nWhat date works for you? (e.g. 15 September or \"tomorrow\")",
-        "custom": true
     },
     "how_it_works": {
         "bot": "Getting started is simple:\n1. Tell Us \u2014 share whether you need a taxi journey or carpentry work\n2. Plan It \u2014 confirm timing, location, scope, and requirements\n3. Get It Done \u2014 move forward with a confirmed journey or agreed project\n\nEach booking request goes to WhatsApp for confirmation \u2014 it's a request, not an automatic booking.",
@@ -842,7 +832,7 @@ window.selectAgent = function(agent) {
         if (hdrName) hdrName.textContent = 'Sierra';
         if (hdrStatus) hdrStatus.innerHTML = '<div class="chat-sdot"></div> Active Agent';
         if (switchLabel) switchLabel.textContent = 'DREW';
-        if (avatar) avatar.src = 'https://raw.githubusercontent.com/priscadezigns9/dnservices/main/assets/dnservices-icon-avatar-v2.png';
+        if (avatar) avatar.src = 'https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/assets/sierra_headshot.jpg';
         if (hist.length === 0) go('start');
     } else if (agent === 'drew') {
         if (sierraUi) sierraUi.style.display = 'none';
@@ -940,11 +930,6 @@ window.go = function(step, label){
                 addQR('← Packages', 'pkg_menu');
                 addQR('Contact Team', 'talk');
             }
-            return;
-        }
-        if(s.custom){
-            if (step === 'book_taxi_start') startBooking('taxi');
-            if (step === 'book_carpentry_start') startBooking('carpentry');
             return;
         }
         if(s.url) window.open(s.url, '_blank');
@@ -1049,85 +1034,6 @@ function renderPkgs(list, note){
     // jumped straight to the bottom past everything they haven't read yet.
 }
 
-/* ---------- In-chat booking flow -----------------------------------------
-   Collects the same fields as taxi-booking.html / carpentry-booking.html
-   conversationally, then builds the exact same WhatsApp message format
-   those forms already use, so DN Services receives a consistent message
-   regardless of which path the customer used. */
-var bookingState = null;
-
-var BOOKING_QUESTIONS = [
-    { key: 'date', q: "What date do you need the taxi? (e.g. 15 September or \"tomorrow\")", qCarpentry: "What date works for you? (e.g. 15 September or \"tomorrow\")" },
-    { key: 'time', q: "What time?" },
-    { key: 'location', q: "Where should the taxi pick you up? (or for carpentry: where is the job located?)", qCarpentry: "Where is the job located?" },
-    { key: 'name', q: "What's your name?" },
-    { key: 'phone', q: "What's the best phone number to reach you?" },
-    { key: 'email', q: "What's your email address? (optional \u2014 type \"skip\" if you'd rather not)" },
-    { key: 'details', q: "Anything else DN Services should know? (optional \u2014 type \"skip\" if not)" }
-];
-
-function startBooking(type){
-    bookingState = { type: type, qIndex: 0, answers: {} };
-}
-
-function askNextBookingQuestion(){
-    var q = BOOKING_QUESTIONS[bookingState.qIndex];
-    var text = (bookingState.type === 'carpentry' && q.qCarpentry) ? q.qCarpentry : q.q;
-    addMsg(text, 'bot');
-    speak(text);
-}
-
-function finishBooking(){
-    var a = bookingState.answers;
-    var serviceLabel = bookingState.type === 'taxi' ? 'Taxi' : 'Carpentry';
-    var text = "DN Services booking request\n\n"
-        + "Service: " + serviceLabel + "\n"
-        + "Date: " + (a.date || '-') + "\n"
-        + "Time: " + (a.time || '-') + "\n"
-        + "Where: " + (a.location || '-') + "\n"
-        + "Name: " + (a.name || '-') + "\n"
-        + "Phone: " + (a.phone || '-') + "\n"
-        + "Email: " + (a.email || '-') + "\n"
-        + "Details: " + (a.details || '-');
-
-    addMsg("Got everything I need. Here's a summary \u2014 tap below to send this straight to DN Services on WhatsApp:", 'bot');
-
-    var summaryCard = document.createElement('div');
-    summaryCard.className = 'cmsg bot';
-    summaryCard.style.whiteSpace = 'pre-line';
-    summaryCard.textContent = text;
-    document.getElementById('chat-msgs').appendChild(summaryCard);
-    summaryCard.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-
-    var q = document.getElementById('chat-qr');
-    var sendLink = document.createElement('a');
-    sendLink.href = 'https://wa.me/18687405689?text=' + encodeURIComponent(text);
-    sendLink.target = '_blank';
-    sendLink.className = 'qrb wa';
-    sendLink.innerHTML = WA_SVG + ' Send to WhatsApp';
-    q.appendChild(sendLink);
-    addQR('Start over', 'start');
-
-    bookingState = null;
-}
-
-function handleBookingAnswer(rawText){
-    var text = rawText.trim();
-    var q = BOOKING_QUESTIONS[bookingState.qIndex];
-    var isOptional = (q.key === 'email' || q.key === 'details');
-    if (isOptional && /^skip$/i.test(text)) {
-        text = '';
-    }
-    bookingState.answers[q.key] = text;
-    bookingState.qIndex++;
-
-    if (bookingState.qIndex >= BOOKING_QUESTIONS.length) {
-        finishBooking();
-    } else {
-        askNextBookingQuestion();
-    }
-}
-
 window.chatSend = function(){
     const i = document.getElementById('chat-inp');
     const t = i.value.trim(); if(!t) return;
@@ -1135,12 +1041,7 @@ window.chatSend = function(){
     maybeCaptureName(t);
     const ep = document.getElementById('emoji-picker');
     if (ep) ep.classList.remove('open');
-
-    if (bookingState) {
-        handleBookingAnswer(t);
-        return;
-    }
-
+    
     const m = document.getElementById('chat-msgs');
     const td = document.createElement('div');
     td.className = 'cmsg bot typing';
