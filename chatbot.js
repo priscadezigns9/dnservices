@@ -247,7 +247,7 @@
         <div id="agent-selector">
             <div class="sel-title">Who would you like to speak with?</div>
             <div class="agent-sel-card" onclick="selectAgent('sierra')">
-                <img src="https://raw.githubusercontent.com/priscadezigns9/dnservices/main/assets/dnservices-icon-avatar.png" alt="Sierra">
+                <img src="https://raw.githubusercontent.com/priscadezigns9/dnservices/main/assets/dnservices-icon-avatar-v2.png" alt="Sierra">
                 <div>
                     <div class="asc-name">Sierra</div>
                     <div class="asc-role">Customer Relations — Chat</div>
@@ -842,7 +842,7 @@ window.selectAgent = function(agent) {
         if (hdrName) hdrName.textContent = 'Sierra';
         if (hdrStatus) hdrStatus.innerHTML = '<div class="chat-sdot"></div> Active Agent';
         if (switchLabel) switchLabel.textContent = 'DREW';
-        if (avatar) avatar.src = 'https://raw.githubusercontent.com/priscadezigns9/dnservices/main/assets/dnservices-icon-avatar.png';
+        if (avatar) avatar.src = 'https://raw.githubusercontent.com/priscadezigns9/dnservices/main/assets/dnservices-icon-avatar-v2.png';
         if (hist.length === 0) go('start');
     } else if (agent === 'drew') {
         if (sierraUi) sierraUi.style.display = 'none';
