@@ -7,22 +7,24 @@
         s.id = 'pd-chat-style';
         s.innerHTML = `
     :root {
-        --cb-purple: #9d50bb;
-        --cb-deep: #6e48aa;
-        --cb-bg: rgba(255, 255, 255, 0.98);
-        --cb-text: #1e1b4b;
+        --cb-purple: #c59b4f;
+        --cb-deep: #164663;
+        --cb-bg: rgba(255, 254, 250, 0.98);
+        --cb-text: #164663;
     }
     
     #pd-chat-bubble {
         position:fixed; bottom:28px; right:28px; z-index:9999;
         width:64px; height:64px; border-radius:24px;
         background: linear-gradient(135deg, var(--cb-purple), var(--cb-deep));
-        box-shadow: 0 12px 40px rgba(157, 80, 187, 0.4);
+        color: var(--cb-text);
+        border: 1px solid rgba(30,27,75,0.1);
+        box-shadow: 0 12px 40px rgba(30, 27, 75, 0.25);
         cursor:pointer; display:flex; align-items:center; justify-content:center;
         transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         animation: bubbleFloat 3s ease-in-out infinite;
     }
-    #pd-chat-bubble:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 15px 50px rgba(157, 80, 187, 0.6); }
+    #pd-chat-bubble:hover { transform: scale(1.1) rotate(5deg); box-shadow: 0 15px 50px rgba(30, 27, 75, 0.35); }
     #pd-chat-bubble.open { transform: scale(0.9) rotate(90deg); background: #1e1b4b; }
     #pd-chat-bubble .chat-x { display:none; color:#fff; font-size:24px; font-weight:300; }
     #pd-chat-bubble.open .chat-x { display:block; }
@@ -31,7 +33,7 @@
     #pd-chat-window {
         position:fixed; bottom:108px; right:28px; z-index:9998;
         width:420px; background: var(--cb-bg); backdrop-filter: blur(20px);
-        border: 1px solid rgba(157, 80, 187, 0.1);
+        border: 1px solid rgba(197, 155, 79, 0.1);
         box-shadow: 0 30px 90px rgba(30, 27, 75, 0.2);
         display:flex; flex-direction:column;
         opacity:0; pointer-events:none; transform:translateY(30px) scale(0.95);
@@ -40,7 +42,7 @@
     }
     #pd-chat-window.open { opacity:1; pointer-events:all; transform:translateY(0) scale(1); }
     
-    .chat-hdr { background: linear-gradient(135deg, var(--cb-purple), var(--cb-deep)); padding:24px 28px; display:flex; align-items:center; gap:16px; flex-shrink:0; }
+    .chat-hdr { background: linear-gradient(135deg, #c59b4f, #164663); padding:24px 28px; display:flex; align-items:center; gap:16px; flex-shrink:0; }
     .chat-avatar { width:48px; height:48px; border-radius:18px; background:#fff; display:flex; align-items:center; justify-content:center; box-shadow: 0 8px 16px rgba(0,0,0,0.1); flex-shrink:0; overflow: hidden; perspective: 1000px; }
     .chat-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
     .chat-avatar:hover img { transform: rotateY(20deg) rotateX(10deg) scale(1.15); filter: drop-shadow(0 12px 20px rgba(0,0,0,0.15)); }
@@ -55,7 +57,7 @@
         color: #fff; border-radius: 12px; font-size: 10px; font-weight: 800; text-transform: uppercase;
         padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s;
     }
-    #chat-voice-toggle.voice-on { background: #fff; color: var(--cb-purple); }
+    #chat-voice-toggle.voice-on { background: #fff; color: #c59b4f; }
 
     /* ── Agent Selector ── */
     #agent-selector {
@@ -67,11 +69,11 @@
         color:rgba(30,27,75,0.45); margin-bottom:4px;
     }
     .agent-sel-card {
-        width:100%; padding:18px 20px; border-radius:18px; border:1.5px solid rgba(157,80,187,0.15);
+        width:100%; padding:18px 20px; border-radius:18px; border:1.5px solid rgba(197,155,79,0.15);
         background:#fff; cursor:pointer; display:flex; align-items:center; gap:16px;
-        transition:all 0.2s; box-shadow:0 2px 12px rgba(157,80,187,0.06);
+        transition:all 0.2s; box-shadow:0 2px 12px rgba(197,155,79,0.06);
     }
-    .agent-sel-card:hover { border-color:rgba(157,80,187,0.5); box-shadow:0 6px 24px rgba(157,80,187,0.14); transform:translateY(-2px); }
+    .agent-sel-card:hover { border-color:rgba(197,155,79,0.5); box-shadow:0 6px 24px rgba(197,155,79,0.14); transform:translateY(-2px); }
     .agent-sel-card img { width:48px; height:48px; border-radius:14px; object-fit:cover; flex-shrink:0; }
     .agent-sel-card .asc-name { font-size:1rem; font-weight:800; color:#1e1b4b; font-family:'Inter',sans-serif; }
     .agent-sel-card .asc-role { font-size:0.78rem; color:rgba(30,27,75,0.55); margin-top:2px; font-weight:500; }
@@ -95,7 +97,7 @@
         display:flex; align-items:flex-end; gap:4px; height:40px; justify-content:center;
     }
     #drew-soundwave span {
-        width:5px; border-radius:3px; background:linear-gradient(135deg,#9d50bb,#6e48aa);
+        width:5px; border-radius:3px; background:linear-gradient(135deg,#c59b4f,#164663);
         height:8px; transition:height 0.15s;
         animation:none;
     }
@@ -107,12 +109,12 @@
     @keyframes drewWave { 0%,100%{height:8px;} 50%{height:32px;} }
     #drew-status { font-size:0.85rem; font-weight:600; color:rgba(30,27,75,0.6); font-family:'Inter',sans-serif; }
     #drew-btn-start {
-        background:linear-gradient(135deg,#9d50bb,#6e48aa); color:#fff; border:none;
+        background:linear-gradient(135deg,#c59b4f,#164663); color:#fff; border:none;
         border-radius:50px; padding:14px 32px; font-size:0.9rem; font-weight:800;
         font-family:'Inter',sans-serif; cursor:pointer; letter-spacing:0.04em;
-        box-shadow:0 8px 24px rgba(157,80,187,0.35); transition:all 0.2s;
+        box-shadow:0 8px 24px rgba(197,155,79,0.35); transition:all 0.2s;
     }
-    #drew-btn-start:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(157,80,187,0.45); }
+    #drew-btn-start:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(197,155,79,0.45); }
     #drew-btn-end {
         display:none; background:#fff; color:#ef4444; border:1.5px solid rgba(239,68,68,0.3);
         border-radius:50px; padding:12px 28px; font-size:0.9rem; font-weight:800;
@@ -120,17 +122,17 @@
     }
     #drew-btn-end.visible { display:block; }
 
-    #chat-back-bar { display:none; align-items:center; gap:10px; padding:12px 24px; border-bottom:1px solid rgba(0,0,0,0.03); background:rgba(157, 80, 187, 0.03); cursor:pointer; flex-shrink:0; }
+    #chat-back-bar { display:none; align-items:center; gap:10px; padding:12px 24px; border-bottom:1px solid rgba(0,0,0,0.03); background:rgba(197, 155, 79, 0.03); cursor:pointer; flex-shrink:0; }
     #chat-back-bar.vis { display:flex; }
-    #chat-back-bar span { font-size:11px; font-weight:800; text-transform:uppercase; color:var(--cb-purple); letter-spacing: 0.05em; }
+    #chat-back-bar span { font-size:11px; font-weight:800; text-transform:uppercase; color:var(--cb-text); letter-spacing: 0.05em; }
     
     .chat-msgs { flex:1; overflow-y:auto; padding:28px; display:flex; flex-direction:column; gap:16px; min-height:60px; max-height:480px; -webkit-overflow-scrolling: touch; }
     .chat-msgs::-webkit-scrollbar { width:4px; }
-    .chat-msgs::-webkit-scrollbar-thumb { background: rgba(157, 80, 187, 0.1); border-radius:10px; }
+    .chat-msgs::-webkit-scrollbar-thumb { background: rgba(197, 155, 79, 0.1); border-radius:10px; }
     
     .cmsg { max-width:85%; font-size:0.95rem; line-height:1.6; padding:14px 20px; border-radius:24px; font-family: 'Inter', sans-serif; position: relative; }
     .cmsg.bot { background:#f3f4f6; color: var(--cb-text); align-self:flex-start; border-bottom-left-radius: 4px; }
-    .cmsg.usr { background: var(--cb-purple); color:#fff; align-self:flex-end; border-bottom-right-radius: 4px; box-shadow: 0 4px 15px rgba(157, 80, 187, 0.2); font-weight: 500; }
+    .cmsg.usr { background: var(--cb-purple); color:var(--cb-text); align-self:flex-end; border-bottom-right-radius: 4px; border: 1.5px solid rgba(22,70,99,0.15); box-shadow: 0 4px 15px rgba(0,0,0,0.06); font-weight: 500; }
     
     /* Media/Link Style */
     .cmsg a { color: inherit; text-decoration: underline; font-weight: 700; }
@@ -141,50 +143,50 @@
         display: flex; align-items: center; justify-content: center; transition: transform 0.15s; }
     .vp-btn:active { transform: scale(0.9); }
     .cmsg.usr .vp-btn { background: rgba(255,255,255,0.22); color: #fff; }
-    .cmsg.bot .vp-btn { background: var(--cb-purple); color: #fff; }
+    .cmsg.bot .vp-btn { background: var(--cb-text); color: #fff; }
     .vp-track { flex: 1; height: 3px; border-radius: 3px; cursor: pointer; position: relative; }
     .cmsg.usr .vp-track { background: rgba(255,255,255,0.28); }
-    .cmsg.bot .vp-track { background: rgba(157, 80, 187, 0.18); }
+    .cmsg.bot .vp-track { background: rgba(197, 155, 79, 0.18); }
     .vp-fill { height: 100%; border-radius: 3px; width: 0%; pointer-events: none; }
     .cmsg.usr .vp-fill { background: #fff; }
-    .cmsg.bot .vp-fill { background: var(--cb-purple); }
+    .cmsg.bot .vp-fill { background: var(--cb-text); }
     .vp-time { font-size: 0.7rem; font-weight: 600; opacity: 0.75; flex-shrink: 0; min-width: 32px; font-variant-numeric: tabular-nums; }
     
     /* Typing dots */
     .cmsg.typing { background:#f3f4f6; align-self:flex-start; border-radius:24px 24px 24px 4px; padding:18px 24px; }
     .typing-dots { display:flex; gap:6px; }
-    .typing-dots span { width:8px; height:8px; border-radius:50%; background:var(--cb-purple); opacity: 0.3; animation: tdot 1.4s infinite; }
+    .typing-dots span { width:8px; height:8px; border-radius:50%; background:var(--cb-text); opacity: 0.3; animation: tdot 1.4s infinite; }
     .typing-dots span:nth-child(2){animation-delay:0.2s;}
     .typing-dots span:nth-child(3){animation-delay:0.4s;}
     @keyframes tdot{0%,60%,100%{transform:translateY(0); opacity: 0.3;}30%{transform:translateY(-8px); opacity: 1;}}
 
     .chat-qr { padding:0 28px 24px; display:flex; flex-wrap:wrap; gap:8px; flex-shrink:0; }
     .qrb { 
-        font-size:0.76rem; font-weight:600; padding:9px 14px; border:1px solid rgba(157, 80, 187, 0.2); 
-        background:#fff; cursor:pointer; color:var(--cb-purple); border-radius:14px; 
+        font-size:0.76rem; font-weight:600; padding:9px 14px; border:1px solid rgba(197, 155, 79, 0.2); 
+        background:#fff; cursor:pointer; color:var(--cb-text); border-radius:14px; 
         transition:all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         font-family: 'Inter', sans-serif;
         display: flex; align-items: center; gap: 7px;
         flex-shrink: 0;
     }
     .qrb svg { width: 14px; height: 14px; flex-shrink: 0; stroke-width: 2.5; }
-    .qrb:hover { background:var(--cb-purple); color:#fff; border-color:var(--cb-purple); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(157, 80, 187, 0.2); }
+    .qrb:hover { background:var(--cb-text); color:#fff; border-color:var(--cb-text); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30, 27, 75, 0.2); }
     .qrb.wa { background: #22c55e; color:#fff; border-color:#22c55e; display:inline-flex; align-items:center; gap:8px; }
     
     .chat-inp-row { display:flex; border-top:1px solid rgba(0,0,0,0.05); padding:10px 12px; background:#fff; align-items:center; gap:4px; position: relative; }
     #chat-inp { flex:1; min-width:0; border:none; background:#f3f4f6; padding:10px 14px; font-size:0.9rem; border-radius:14px; outline:none; transition: all 0.2s; font-family: 'Inter', sans-serif; }
-    #chat-inp:focus { background: #fff; box-shadow: inset 0 0 0 2px rgba(157, 80, 187, 0.1); }
+    #chat-inp:focus { background: #fff; box-shadow: inset 0 0 0 2px rgba(197, 155, 79, 0.1); }
     
     .chat-tool-btn { 
         width:36px; height:36px; display:flex; align-items:center; justify-content:center; 
         border-radius:12px; cursor:pointer; transition:all 0.2s; border:none; background: transparent; color: #64748b;
         flex-shrink: 0;
     }
-    .chat-tool-btn:hover { color: var(--cb-purple); background: #f3f4f6; }
+    .chat-tool-btn:hover { color: var(--cb-text); background: #f3f4f6; }
     #chat-mic.recording { background: #fee2e2; color: #ef4444; animation: cbPulse 1.5s infinite; }
     #chat-timer { display:none; font-size:12px; font-weight:700; color:#ef4444; margin-right:4px; font-family:monospace; }
     #chat-timer.vis { display:inline; }
-    #chat-snd { color: var(--cb-purple); }
+    #chat-snd { color: var(--cb-text); }
     #chat-snd:hover { transform: scale(1.1); }
     
     #emoji-picker {
@@ -200,9 +202,9 @@
     @keyframes cbPulse { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
 
     .cpkg-grid { display:flex; flex-direction:column; gap:12px; width:100%; align-self:stretch; }
-    .cpkg-card { background:#fff; border:1px solid rgba(157, 80, 187, 0.1); padding:20px; cursor:pointer; transition:all 0.3s; border-radius:20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-    .cpkg-card:hover { border-color:var(--cb-purple); background:rgba(157, 80, 187, 0.02); transform: translateY(-3px); box-shadow: 0 12px 24px rgba(157, 80, 187, 0.08); }
-    .cpkg-name { font-size:1rem; font-weight:800; color:var(--cb-purple); letter-spacing:-0.01em; }
+    .cpkg-card { background:#fff; border:1px solid rgba(197, 155, 79, 0.1); padding:20px; cursor:pointer; transition:all 0.3s; border-radius:20px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+    .cpkg-card:hover { border-color:var(--cb-text); background:rgba(30, 27, 75, 0.02); transform: translateY(-3px); box-shadow: 0 12px 24px rgba(30, 27, 75, 0.08); }
+    .cpkg-name { font-size:1rem; font-weight:800; color:var(--cb-text); letter-spacing:-0.01em; }
     .cpkg-price { font-size:0.85rem; font-weight:700; color:#64748b; margin-top:4px; }
     .cpkg-desc { font-size:0.85rem; color:#475569; margin-top:12px; line-height:1.6; }
 
@@ -261,13 +263,13 @@
         </div>
         <!-- Drew Vapi Voice Panel -->
         <div id="drew-panel">
-            <img src="https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/assets/drew_headshot.jpg" alt="Drew" style="width:72px;height:72px;border-radius:20px;object-fit:cover;box-shadow:0 8px 24px rgba(157,80,187,0.25);" onerror="this.src='https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/logos/PRISCA_ICON_LOGO_tight.png'">
+            <img src="https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/assets/drew_headshot.jpg" alt="Drew" style="width:72px;height:72px;border-radius:20px;object-fit:cover;box-shadow:0 8px 24px rgba(197,155,79,0.25);" onerror="this.src='https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/logos/PRISCA_ICON_LOGO_tight.png'">
             <div style="font-size:1.1rem;font-weight:800;color:#1e1b4b;font-family:'Inter',sans-serif;">Drew</div>
             <div id="drew-soundwave"><span></span><span></span><span></span><span></span><span></span></div>
             <div id="drew-status">Ready to connect</div>
             <button id="drew-btn-start" onclick="drewStartCall()">🎙 Start Call</button>
             <button id="drew-btn-end" onclick="drewEndCall()">End Call</button>
-            <button id="drew-btn-text" onclick="enterDrewText()" style="margin-top:10px;background:none;border:none;color:var(--cb-purple);font-weight:700;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;gap:6px;">
+            <button id="drew-btn-text" onclick="enterDrewText()" style="margin-top:10px;background:none;border:none;color:var(--cb-text);font-weight:700;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;gap:6px;">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.5 8.5 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
                 Text Instead
             </button>
@@ -295,51 +297,6 @@
         </div>
     </div>`;
         document.body.appendChild(c);
-    // ── Persistent Guidance Buttons ──
-    if(!document.getElementById('pd-roadmap-bar')){
-        const r = document.createElement('div');
-        r.id = 'pd-roadmap-bar';
-        r.style = 'padding:0 28px 12px; display:flex; flex-wrap:wrap; gap:10px; flex-shrink:0;';
-        r.innerHTML = `
-            <style>
-                #pd-roadmap-bar::-webkit-scrollbar { display:none; }
-                .road-btn { 
-                    font-size:0.76rem; font-weight:600; padding:9px 14px; border:1px solid rgba(157, 80, 187, 0.2); 
-                    background:#fff; cursor:pointer; color:var(--cb-purple); border-radius:14px; 
-                    transition:all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-                    font-family: 'Inter', sans-serif;
-                    display: flex; align-items: center; gap: 7px;
-                    flex-shrink: 0;
-                }
-                .road-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
-                .road-btn:hover { background:var(--cb-purple); color:#fff; border-color:var(--cb-purple); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(157, 80, 187, 0.2); }
-                @media (max-width: 520px) {
-                    #pd-roadmap-bar { padding-left:16px !important; padding-right:16px !important; gap:6px !important; }
-                    .road-btn { font-size:0.72rem; padding:9px 12px; gap:5px; border-radius:12px; }
-                    .road-btn svg { width:13px; height:13px; }
-                }
-                @media (max-width: 340px) {
-                    #pd-roadmap-bar { padding-left:10px !important; padding-right:10px !important; gap:4px !important; }
-                    .road-btn { font-size:0.64rem; padding:8px 9px; gap:4px; }
-                    .road-btn svg { width:12px; height:12px; }
-                }
-            </style>
-            <button class="road-btn" onclick="go('about_brands', 'Show me Evolve')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/></svg>
-                <span>Evolve</span>
-            </button>
-            <button class="road-btn" onclick="go('about_twmk', 'What is TWMK?')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                <span>TWMK</span>
-            </button>
-            <button class="road-btn" onclick="go('request_audit', 'I want an audit')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="m9 14 2 2 4-4"/></svg>
-                <span>Request Audit</span>
-            </button>
-        `;
-        const msgs = document.getElementById('chat-msgs');
-        msgs.parentNode.insertBefore(r, document.querySelector('.chat-inp-row'));
-    }
 
         
         // Populate Emojis
@@ -358,11 +315,11 @@
         });
     }
 
-const WA="https://wa.me/18683424101";
+const WA="https://wa.me/18687405689";
 const SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNhemhkbnF6YXFwcWNyYWxtdGhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNzE5NjYsImV4cCI6MjA5Mzc0Nzk2Nn0.uTyw31uWTNOTV5-HzNpm46vpAJABAsHLMzW-sYOkRhc";
 const SB_URL = "https://sazhdnqzaqpqcralmthh.supabase.co";
 
-const SYSTEM_PROMPT = "Your name is Sierra. You are the Prisca Dezigns AI assistant — the sales and support agent for Prisca Dezigns, a premium digital agency based in Trinidad & Tobago. If a user asks your name, or greets you by name, or asks what you are, tell them you're Sierra. You are also literally the AI Employee behind the 'AI Customer Relations' department listed under AI Employees on this site -- if someone asks what AI Customer Relations does, you can honestly say 'that's me' and describe yourself.\n\nYour personality: warm, professional, sharp, and conversational. You speak like a knowledgeable friend who happens to be a web design expert — never robotic, never generic, never pushy. Keep replies concise (2–4 sentences max unless detail is needed). Always ask a follow-up question to keep the conversation moving.\n\nATTACHMENT HANDLING:\nYou DO accept documents and files -- there is a paperclip/attach button in the chat for exactly this. When a user asks to send a document, image, or file, tell them to use the attach button, never say you lack the capability to receive files. When a user uploads an image, you will receive it as actual image content you can see — describe or respond to what is genuinely in it. When a user uploads a voice note, you will only receive a text transcript if one was successfully captured; if a message tells you no transcript is available, say so honestly and ask the user to type their question instead. When a user uploads a general file/document, it has already been saved securely and logged for the team -- confirm this to the user and ask what they need next, rather than saying you cannot handle it. Never claim to have heard or seen something you were not actually given.\n\nABOUT PRISCA DEZIGNS:\nPrisca Dezigns is an enterprise AI and digital transformation partner based in Trinidad & Tobago, founded by Priscilla Narine. The agency combines high-fidelity websites, AI automation (chatbots, WhatsApp automation, email automation, voice agents, lead qualification and routing), and brand architecture — helping businesses modernize how they operate, not just how they look online. Every project is professionally built — no drag-and-drop builders. Clients provide content; the team handles everything else.\n\nBRAND IDENTITY:\nPrisca Dezigns' primary brand color is a rich purple (#7c3aed), paired with a warm ivory/cream background (#FFFFF0). If asked about the brand's colors, favorite color, or visual identity, answer directly and confidently using this — purple is the signature color across the website, logo, and all client-facing materials.\n\nSERVICES & PRICING (always quote these exact figures):\n- 1-Day Custom Site: $200 setup + $50/mo maintenance (Live in 24hrs). Includes 1 revision. Any additional add-on is $50 USD each.\n- Custom Web Packages: Starter ($297), Growth ($597), Trusted ($1,200), Custom (Bespoke)\n- E-Commerce: E-Starter ($497), E-Growth ($1,497), E-Trusted ($2,500) -- setup fee only, no separate monthly hosting fee\n- Maintenance: $99/mo -- monthly updates, security monitoring, performance checks, 1 content edit/mo, priority support (E-Commerce Maintenance: $199.99/mo)\n- Template Site: $149.99 + $19.99/mo · Micro Store: $249.99 + $34.99/mo · Agency & Artist (Premium 3D): $299.99 + $19.99/mo\n- Template Add-Ons: Copywriting ($49.99 + $4.99/update) · AI Chatbot ($349.99 + $49.99/mo)\n- Voice Agents: Starting at $8,000 setup + $900/mo (Add-on: $500 setup + $50/mo)\n- AI Consultancy at Prisca Dezigns covers two umbrellas -- AI Employees and AI Voice -- each with its own dedicated pricing page:\n  - AI EMPLOYEES (/aidata/) -- Starter (From $1,250 + $599/mo), Growth (From $2,000 + $899/mo), Enterprise (From $4,000 + $1,499/mo). This was previously called 'AI Data' -- if a user says 'AI Data', they mean this. AI Employees is organised into 9 departments (NOT a flat product, each is its own entry on the homepage globe navigation), and each department is represented by ONE named AI Employee persona: AI Administration -- Alana, Cross-Department Admin Coordinator (inbox triage, scheduling, follow-ups, connects to other AI Employees for one unified daily brief); AI Human Resources -- Alice, AI Human Resources Officer (onboarding, leave tracking, application screening, TT payroll compliance); AI Finance -- Jamal, AI Finance Officer (reconciliation, discrepancy detection, automated monthly reports); AI Health & Safety -- Luna, AI Health & Safety Officer (incident monitoring, toolbox talks, hazard logs, compliance audits); AI Information Technology -- Sunil, AI IT Support Officer (help desk, data quality validation, 24/7 systems monitoring); AI Marketing -- Dean, AI Marketing Data Administrator (marketing data management, lead scoring, campaign performance reporting); AI Quality Assurance -- Zara, AI QA/QC Officer (inspection logging, non-conformance tracking, continuous compliance monitoring); AI Production -- Chan, AI Production Officer (output logging, inventory tracking, preventive maintenance scheduling, production trend analysis); AI Customer Relations -- Sierra, handles WhatsApp/email/website chat around the clock, qualifies leads, books appointments, follows up automatically (this was previously marketed separately as 'AI Channel', now folded in as a department here, same tier pricing as every other department). When discussing a department, use the employee's name naturally (e.g. 'Alana handles that' rather than just 'the Administration department'). All 9 departments share the same tier pricing above. Optional add-ons: Starter tier can add Custom Export Formats, Automated Report Delivery, Anomaly & Error Alerts; Growth tier adds those plus CRM & Database Sync, Multi-Source Data Intake, Analytics Dashboard; Enterprise includes ALL add-ons as standard.\n  - AI VOICE (/aivoice/) -- Starter (From $1,500 + $499/mo), Growth (From $2,500 + $899/mo), Enterprise (From $5,000 + $1,699/mo). A separate umbrella from AI Employees, not a department within it. Specific AI employees (flat list, not departmentalised): AI Receptionist, AI Customer Service, AI Sales Rep, AI Scheduler, AI Survey & Feedback, AI Accounts Receivable, AI HSE Assistant. Optional add-ons included at Starter: WhatsApp & SMS Follow-Up, Custom Voice & Persona, Multi-Language Support; Growth adds CRM Integration, Call Analytics Dashboard; Enterprise includes ALL add-ons as standard, including Outbound Calling Campaigns. AI Voice Feature Upgrades (can be added to ANY package at any time, with their own individual pricing): CRM Integration (+$300 setup +$50/mo), Outbound Calling Campaigns (+$400 setup +$75/mo), WhatsApp & SMS Follow-Up (+$200 setup +$30/mo), Custom Voice & Persona (+$250 setup +$30/mo), Call Analytics Dashboard (+$350 setup +$50/mo), Multi-Language Support (+$300 setup +$40/mo).\n  When a user asks about a specific role (e.g. 'AI receptionist' or 'data entry automation'), name the correct umbrella it belongs to and quote that umbrella's tier pricing -- the tier pricing (Starter/Growth/Enterprise) represents the complexity of the agent/employee chosen, not a separate per-role price list. Both umbrellas include an AI Management Plan (platform monitoring, performance optimization, workflow maintenance, updates, and support). All prices are starting prices -- final implementation and monthly pricing are confirmed following a Business Process Audit tailored to the client's actual volume and needs.\n\nMANDATORY: whenever a user asks about ANY automation product -- AI Consultancy in general, any AI Employees department (including AI Customer Relations), or AI Voice -- always give them two things in the same reply: the audit link (https://priscadezigns.org/audit/, a free self-service form that produces a personalised recommendation) and the WhatsApp number (1-868-342-4101). This applies no matter how the question arrives -- typed message or voice note. Frame it naturally, e.g. 'You can start your free audit at priscadezigns.org/audit to get a personalised recommendation, or message us directly on WhatsApp at 1-868-342-4101.'\n\nEVOLVE MOBILITY (driveevolve.com):\nStrategic digital partner. EVOLVE Mobility Limited is transforming the Caribbean's roads through green mobility, based in Trinidad & Tobago. Phone: +1-868-387-6937 (also \\\"EVPOWER\\\"). Email: info@driveevolve.com. WhatsApp: https://wa.me/18683876937\n\nBrands carried: BYD (est. 1994, EVs & battery innovation leader), Denza (2010, premium NEV brand under BYD, luxury design), Dongfeng (1969, one of China's largest automakers, EV sub-brand Dongfeng Nammi), GAC (1997, EVs & global expansion), iCAUR (2023, under Chery Group, youthful urban/light off-road EVs), JuneYao (1991, diverse Chinese holding group), Leapmotor (2015, smart EVs with autonomous driving tech), Wuling (1982, affordable mini EVs & utility vehicles).\n\nFeatured vehicles (current lineup, prices in TTD):\n- GAC Aion ES: TT$195,000 (from TT$2,500/mo), 440km range, 0-100km/h in 12.1s, 7-8hr AC charge, ~TT$22 to charge\n- Leapmotor C10: TT$255,000, 480km range, 0-100km/h in 7.5s, 9-10hr AC charge\n- BYD Sealion 7 (Premium) RWD: TT$360,000, 560km range, 0-100km/h in 6.7s, 8-9hr AC charge\n- GAC Aion V: TT$260,000, 600km range, 0-100km/h in 7.7s, 8-9hr AC charge\nMany vehicles are available from as low as TT$2,500/mo on financing — always mention this option since it makes EVs far more accessible than the full sticker price suggests. Full current inventory: driveevolve.com/vehicles.\n\nWhy choose EVOLVE: future-ready EVs from leading Chinese manufacturers; servicing & software updates handled by SBCS University (their official Hybrid+EV service partner); genuine parts supplied directly by EVOLVE; complete customer support before and after purchase.\n\nCharging: EVOLVE operates a growing charging network in Trinidad & Tobago, including a station at Ramps Cunupia (51A Railway Road, Cunupia), Type 2 connector, up to 100kW. Full map at driveevolve.com/charging.\n\nBooking: customers can book a showroom viewing at driveevolve.com/book-viewing or via WhatsApp. Payment types include full purchase and financing/lease options.\n\nFLEET ASSESSMENT & FLEET TRANSITION (B2B service, run jointly by Prisca Dezigns and EVOLVE):\nFor businesses in Trinidad & Tobago/the Caribbean that operate a vehicle fleet (delivery, logistics, corporate, courier, construction, oil & gas, etc.), Prisca Dezigns and EVOLVE offer a fleet EV transition service:\n- Free Fleet Assessment: a free site visit to assess the client's current fleet and evaluate EV transition suitability. Free charging equipment is also offered with qualifying purchases.\n- Fleet Transition process: (1) the business shares its fleet needs (executive sedan, field SUV, crew MPV, or a mix) via hello@priscadezigns.org or WhatsApp +1-868-342-4101; (2) Prisca Dezigns makes a direct introduction to EVOLVE Mobility's sales team, who confirm live pricing, availability, and fleet deal structure; (3) EVOLVE structures the fleet agreement (full purchase or bank-financed) and manages all documentation, registration, and delivery logistics, with Prisca Dezigns remaining available as liaison throughout.\n- Recommended starting point for larger fleets: a pilot fleet of 2-3 vehicles (e.g. one executive sedan, one SUV for field teams) to gather measurable cost data within 90 days before a full rollout -- phased/flexible acquisition avoids one large capital outlay.\n- Value case: switching to electric can cut fuel costs by up to 70%, with no oil changes, fewer brake replacements, and no transmission servicing. Fleet vehicles charge overnight (a fleet of 5 vehicles adds roughly TT$100/night to the electricity bill) so they leave fully charged every morning -- no fuel runs, no petrol station queues, no idle time during operating hours, and no need to stop at a public station at odd hours (a real security upgrade for staff). Every EVOLVE vehicle carries an 8-year manufacturer battery warranty, with battery degradation averaging just 2.3%/year (over 81% capacity remaining after 8 years).\n- This is a distinct lead type from general chatbot/web leads -- if a user mentions a fleet, multiple vehicles, or a vehicle-dependent business, treat it as a Fleet enquiry and route them toward WhatsApp for the team to follow up.\n\nRULES:\n- Keep replies conversational, 2-4 sentences.\n- Always provide exact prices when asked about specific tiers or vehicles — use the figures above exactly, never estimate or round differently.\n- Offer WhatsApp (1-868-342-4101) for booking or viewing.\n- Use point form for all summaries and service lists.\n- Be concise, professional, and results-oriented.";
+const SYSTEM_PROMPT = "Your name is Sierra. You are the AI concierge for DN Services -- a taxi and carpentry service based in Trinidad & Tobago. If a user asks your name, tell them you're Sierra.\n\nYour personality: warm, dependable, clear, and down-to-earth -- like a trustworthy neighbour who always follows through. Keep replies concise (2-4 sentences) and always ask a follow-up question to keep things moving.\n\nATTACHMENT HANDLING:\nYou DO accept photos and files -- there is a paperclip/attach button in the chat. Clients booking carpentry work often want to share photos of the space or item; when they do, tell them to use the attach button, and never say you lack the capability. When an image is uploaded, you will receive it as actual image content you can see -- respond to what's genuinely in it. When a voice note is uploaded, you'll only get a text transcript if one was successfully captured; if told none is available, say so honestly and ask them to type instead.\n\nABOUT DN SERVICES:\nDN Services keeps everyday journeys moving and practical projects on track, with clear communication and dependable follow-through. Two services: Taxi and Carpentry. Core values: Dependable (clear arrangements, practical follow-through), Personal (a direct service shaped around the customer), Practical (solutions that make everyday life easier), Professional (respectful work from start to finish).\n\nSERVICES:\n- Taxi Service -- pre-arranged journeys, local transportation, clear communication before pickup, professional and reliable service. Every request is a booking REQUEST, not an automatic confirmation -- DN Services confirms availability and final details afterward.\n- Carpentry -- repairs and adjustments, custom woodwork, furniture and fixture projects, clear quotes provided before work begins.\n\nHOW BOOKING WORKS (always explain this when someone wants to book):\n1. Tell Us -- share whether it's a taxi journey or carpentry work\n2. Plan It -- confirm timing, location, scope, and any important requirements\n3. Get It Done -- proceed with the confirmed journey or agreed carpentry project\nBooking happens through a short form (date, time, location, name, phone, email, details) that sends the request to WhatsApp for confirmation.\n\nPRICING: DN Services does not publish fixed prices for either service -- taxi fares depend on distance/timing, and carpentry work is quoted individually based on scope. Never invent a number. Always route pricing questions toward starting a booking request or WhatsApp so DN Services can quote accurately.\n\nMANDATORY: always offer WhatsApp (+1-868-740-5689) as the direct way to reach DN Services, alongside the booking form -- this applies to typed messages and voice notes alike.\n\nRULES:\n- Keep replies conversational, 2-4 sentences.\n- Never invent a price for taxi fares or carpentry work -- always route to a booking request or WhatsApp for an accurate quote.\n- Offer WhatsApp (+1-868-740-5689) for booking or questions.\n- Use point form for service lists and the booking process.\n- Be warm, dependable, and clear.";
 
 let vpCounter = 0;
 const VP_PLAY = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>';
@@ -766,185 +723,46 @@ function uploadToVault(file, fileName, type) {
     });
 }
 
-const PKGS={"standard":[{"name":"Starter","price":"$297","desc":"1-Page High-Fidelity Website \u00b7 Full Brand Setup (Logo, Domain, Favicon) \u00b7 Social Media Integration (FB/IG Covers) \u00b7 Technical SEO & SSL \u00b7 1 Month Free Maintenance"},{"name":"Growth","price":"$597","desc":"Manage 1 Brand Page (Full Social Setup) \u00b7 Full Branding & App/Web Architecture \u00b7 Content Creation & Copywriting \u00b7 Advanced SEO & Analytics \u00b7 1 Month Free Maintenance"},{"name":"Trusted","price":"$1,200","desc":"Full Business Automation \u00b7 10-15 Pages of High-Fidelity Content \u00b7 Premium Brand Scaling & PR Logic \u00b7 24/7 Priority Tech Support \u00b7 1 Month Free Maintenance"},{"name":"Custom","price":"Bespoke","desc":"Tailored Digital Architecture \u00b7 Custom API & Tool Integration \u00b7 Unique Brand Identity Design \u00b7 Scalable Infrastructure Logic \u00b7 Priority Support"}],"ecommerce":[{"name":"E-Starter","price":"$497","desc":"1-Page Online Shop \u00b7 Full Store Branding & Domain \u00b7 Integrated Social Shop Setup \u00b7 Payment Gateway Integration \u00b7 1 Month Free Maintenance"},{"name":"E-Growth","price":"$1,497","desc":"2-5 Page Store Architecture \u00b7 Full Shop Logic (10+ Products) \u00b7 Deep Copywriting & Product SEO \u00b7 Automated Fulfillment Sync \u00b7 1 Month Free Maintenance"},{"name":"E-Trusted","price":"$2,500","desc":"Elite Store (50+ Products) \u00b7 15+ Page Network Architecture \u00b7 Advanced Inventory & CRM Automation \u00b7 On-Chain Inventory Logic \u00b7 1 Month Free Maintenance"},{"name":"E-Commerce Maintenance","price":"$199.99/mo","desc":"E-Commerce Store Uptime & Security Monitoring \u00b7 Monthly Product & Content Updates \u00b7 High-Fidelity Technical Backups \u00b7 Priority Support"}],"continuity":[{"name":"Maintenance","price":"$99/mo","desc":"Monthly Updates \u00b7 Security Monitoring \u00b7 Performance Checks \u00b7 1 Content Edit/mo \u00b7 Priority Support"}],"templates":[{"name":"Template Site","price":"$149.99 + $19.99/mo","desc":"Custom branded to your business \u00b7 Live on your domain in 24 hours \u00b7 SSL, mobile-ready, SEO basics included \u00b7 1 complimentary revision round"},{"name":"+ Copywriting Add-On","price":"$49.99 + $4.99/update","desc":"We write your headline, bio & service copy \u00b7 Based on a short intake form you fill in \u00b7 $4.99 flat per edit after go-live"},{"name":"+ AI Chatbot Add-On","price":"$349.99 + $49.99/mo","desc":"24/7 AI \u2014 answers your business FAQs \u00b7 Preloaded with hours, location, services \u00b7 Works with new or existing sites"},{"name":"Micro Store","price":"$249.99 + $34.99/mo","desc":"Product grid \u2014 up to 12 products \u00b7 WhatsApp order button per product \u00b7 WhatsApp-driven orders with zero fees \u00b7 Everything in Standard Site included"},{"name":"Agency & Artist (Premium 3D)","price":"$299.99 + $19.99/mo","desc":"High-end cinematic 3D scroll experience \u00b7 Aeon \u00b7 Nexus \u00b7 Stellar \u00b7 Live on your domain in 24\u201348 hours"}],"aidata":[{"name":"Starter","price":"From $1,250 + $599/mo","desc":"AI Data Entry, Processing, Records, Reporting, Workflow & Document automation \u00b7 Add-ons available: Custom Export Formats, Automated Report Delivery, Anomaly & Error Alerts"},{"name":"Growth","price":"From $2,000 + $899/mo","desc":"Same roles \u00b7 Add-ons available: everything in Starter plus CRM & Database Sync, Multi-Source Data Intake, Analytics Dashboard"},{"name":"Enterprise","price":"From $4,000 + $1,499/mo","desc":"Same roles at enterprise scale \u00b7 ALL add-ons included as standard"}],"aivoice":[{"name":"Starter","price":"From $1,500 + $499/mo","desc":"AI Receptionist, Customer Service, Sales Rep, Scheduler, Survey & Feedback, Accounts Receivable, HSE Assistant \u00b7 Add-ons available: WhatsApp & SMS Follow-Up, Custom Voice & Persona, Multi-Language Support"},{"name":"Growth","price":"From $2,500 + $899/mo","desc":"Same roles \u00b7 Add-ons available: everything in Starter plus CRM Integration, Call Analytics Dashboard"},{"name":"Enterprise","price":"From $5,000 + $1,699/mo","desc":"Full voice network across all roles \u00b7 ALL add-ons included as standard"}],"aichannel":[{"name":"Starter","price":"From $750 + $399/mo","desc":"Responds to basic inquiries, captures lead name & contact, simple FAQ & greeting logic, monthly performance report"},{"name":"Growth","price":"From $1,250 + $599/mo","desc":"Qualifies & scores leads automatically, books appointments without human input, sends follow-up sequences, connects to your CRM, bi-weekly performance report"},{"name":"Enterprise","price":"From $2,500 + $999/mo","desc":"Full conversational AI with custom personality, multi-language & industry-specific logic, sales & objection-handling intelligence, deep CRM sync & analytics, weekly reporting dashboard"}],"specializedNote":"All Specialized AI Network pricing (AI Administration/HR/Finance/Health & Safety/IT/Marketing/Quality Assurance/Production, AI Voice Agents, AI Customer Relations) starts from the figures shown. Final implementation and monthly AI Management pricing are confirmed following a Business Process Audit, and every plan includes ongoing platform monitoring, updates, and support."};
+const PKGS={};
 
 const STEPS = {
-    "request_audit": {
-    "bot": "I can run a full high-fidelity audit on your current digital infrastructure \u2014 from your website conversion to your automation efficiency. Ready to level up?",
-    "r": [
-        {
-            "l": "Yes, start audit",
-            "s": "talk",
-            "i": "clipboard-check"
-        },
-        {
-            "l": "Back",
-            "s": "start",
-            "i": "arrow-left"
-        }
-    ]
-},
     "start": {
-        "bot": "Hey 👋 I'm Sierra. What brings you here today?",
+        "bot": "Welcome to DN Services \u2014 I'm Sierra. Move with confidence, build with care. How can I help today?",
         "r": [
-            { "l": "About Prisca Dezigns", "s": "about", "i": "info" },
-            { "l": "Talk to Drew about pricing", "s": "__drew_text__", "i": "dollar-sign" },
-            { "l": "General support", "s": "talk", "i": "message-circle" }
+            { "l": "Book a Taxi", "s": "svc_taxi", "i": "car" },
+            { "l": "Book Carpentry", "s": "svc_carpentry", "i": "tool" },
+            { "l": "How it works", "s": "how_it_works", "i": "info" },
+            { "l": "Talk to the team", "s": "talk", "i": "message-circle" }
         ]
     },
-    "drew_start": {
-        "bot": "Hey, I'm Drew — I handle sales and pricing. What are you looking to build or automate?",
+    "svc_taxi": {
+        "bot": "Taxi Service \u2014 a dependable way to get where you need to go, with arrangements made clearly before the journey. Pre-arranged journeys, local transportation, clear communication before pickup.\n\nFares depend on distance and timing, so there's no fixed price \u2014 send your journey details and DN Services will confirm.",
         "r": [
-            { "l": "I want a template site", "s": "pkg_templates", "i": "color-swatch" },
-            { "l": "I need a custom website", "s": "need_website", "i": "layout" },
-            { "l": "I need AI automation", "s": "automation", "i": "cpu" },
-            { "l": "Agency Packages", "s": "pkg_menu", "i": "package" }
+            { "l": "Start a booking request", "url": "https://dnservices.priscadezigns.org/taxi-booking.html", "i": "car" },
+            { "l": "Chat on WhatsApp instead", "url": "https://wa.me/18687405689?text=Hi%2C%20I%27d%20like%20to%20book%20a%20taxi.", "i": "message-circle" },
+            { "l": "\u2190 Back", "s": "start", "i": "arrow-left" }
         ]
     },
-    "about": {
-        "bot": "Prisca Dezigns is an enterprise AI and digital transformation partner — we build high-fidelity web architecture, AI automation systems, and brand infrastructure for businesses ready to scale. Based in Trinidad & Tobago, working across the Caribbean.",
+    "svc_carpentry": {
+        "bot": "Carpentry \u2014 careful work for useful repairs, improvements, and made-to-fit projects around your space. Repairs and adjustments, custom woodwork, furniture and fixture projects, with a clear quote before work begins.\n\nEvery job is quoted individually based on scope \u2014 share the details and DN Services will confirm.",
         "r": [
-            { "l": "Evolve Mobility", "s": "about_brands", "i": "car" },
-            { "l": "The Way Made Known", "s": "about_twmk", "i": "heart" },
-            { "l": "About Prisca Dezigns", "s": "about_founder", "i": "user" },
-            { "l": "Back", "s": "start", "i": "arrow-left" }
-        ]
-    },
-    "about_brands": {
-        "bot": "We're the strategic digital partners for EVOLVE Mobility (driveevolve.com), transforming the Caribbean's roads through green mobility.\n\nCurrent lineup includes:\n⚡ GAC Aion ES — from TT$195,000 (TT$2,500/mo)\n⚡ Leapmotor C10 — TT$255,000\n⚡ GAC Aion V — TT$260,000\n⚡ BYD Sealion 7 (Premium) — TT$360,000\n\nCarrying BYD, Denza, GAC, Leapmotor, Wuling & more, with servicing by SBCS University.",
-        "r": [
-            { "l": "Visit Evolve Mobility", "url": "https://driveevolve.com", "i": "external-link" },
-            { "l": "Fleet Assessment & Transition", "s": "fleet_transition", "i": "truck" },
-            { "l": "Back", "s": "about", "i": "arrow-left" }
-        ]
-    },
-    "fleet_transition": {
-        "bot": "If your business runs a vehicle fleet, we offer a free on-site assessment and handle the full EV transition — from picking the right models to financing, documentation, and delivery. Fuel costs typically drop up to 70%, with no oil changes or transmission servicing. Most fleets start with a 2-3 vehicle pilot to see real numbers within 90 days.",
-        "wa": true
-    },
-    "about_twmk": {
-        "bot": "The Way Made Known (TWMK) is our humanitarian backbone. We use a portion of our agency profits to share the Gospel and provide community support in Trinidad and Tobago.",
-        "r": [
-            { "l": "Back", "s": "about", "i": "arrow-left" }
-        ]
-    },
-    "about_founder": {
-        "bot": "Prisca Dezigns was founded in Trinidad & Tobago by Priscilla Narine. The agency operates as an enterprise AI and digital transformation partner — combining high-fidelity web architecture with AI automation (chatbots, WhatsApp automation, voice agents, lead qualification) to help businesses modernize how they operate, not just how they look online.",
-        "r": [
-            { "l": "Back", "s": "about", "i": "arrow-left" }
-        ]
-    },
-    "need_website": {
-        "bot": "Our custom websites are built from scratch — fully tailored to your brand, SEO-optimised, and delivered fast. What do you need?",
-        "r": [
-            { "l": "Need it in 24hrs — $200", "s": "pkg_oneday", "i": "zap" },
-            { "l": "I need a full custom build", "s": "pkg_standard", "i": "code" },
-            { "l": "Mine isn't converting", "s": "bad_website", "i": "trending-down" },
-            { "l": "Show me templates instead", "s": "pkg_templates", "i": "color-swatch" }
-        ]
-    },
-    "bad_website": {
-        "bot": "That's usually a sign of weak conversion design, slow load times, or missed follow-up on leads — all fixable. Want us to run a quick audit, or look at AI automation to catch the leads you're currently losing?",
-        "r": [
-            { "l": "Run an audit", "s": "request_audit", "i": "clipboard-check" },
-            { "l": "Show me AI automation", "s": "automation", "i": "cpu" },
-            { "l": "Back", "s": "need_website", "i": "arrow-left" }
-        ]
-    },
-    "pkg_menu": {
-        "bot": "Our agency packages are full custom builds — designed, developed and delivered by Prisca Dezigns. Which fits your needs?",
-        "r": [
-            { "l": "1-Day Website — $200", "s": "pkg_oneday", "i": "zap" },
-            { "l": "Custom Website Packages", "s": "pkg_standard", "i": "layout" },
-            { "l": "E-Commerce Packages", "s": "pkg_ecommerce", "i": "shopping-bag" },
-            { "l": "AI Consultancy", "s": "pkg_ai", "i": "cpu" },
-            { "l": "Maintenance", "s": "pkg_continuity", "i": "tool" },
-            { "l": "I want a template instead", "s": "pkg_templates", "i": "color-swatch" }
-        ]
-    },
-    "pkg_oneday": {
-        "bot": "The 1-Day Website is a fully custom site — built to your brand, live within 24 hours. One flat price: $200 setup (includes 1 revision). Then $50/mo to keep it live, optimised, and secure. Any add-on after that is $50 USD each.",
-        "r": [
-            { "l": "What's included?", "s": "oneday_included", "i": "check-circle" },
-            { "l": "I want this — let's talk", "s": "talk", "i": "message-circle" },
-            { "l": "See other packages", "s": "pkg_menu", "i": "package" }
-        ]
-    },
-    "oneday_included": {
-        "bot": "Your 1-Day Site includes: ✦ Full custom design (not a template) ✦ Mobile-first, fast-loading ✦ SEO + GEO + AEO optimised ✦ WhatsApp & contact integration ✦ 1 Revision Included ✦ Live in 24 hours. $200 flat. $50/mo maintenance. Any additional add-on is $50 USD each.",
-        "r": [
-            { "l": "Let's get started", "s": "talk", "i": "zap" },
-            { "l": "See template option instead", "s": "pkg_templates", "i": "color-swatch" },
-            { "l": "See all packages", "s": "pkg_menu", "i": "package" }
-        ]
-    },
-    "automation": {
-        "bot": "We build AI systems that replace a full-time customer service rep. They respond, qualify, and follow up — all day, every day. What are you trying to automate?",
-        "r": [
-            { "l": "Customer service / enquiries", "s": "how_it_works", "i": "headphones" },
-            { "l": "AI Employees (9 departments)", "s": "aidata_products", "i": "database" },
-            { "l": "AI Voice (receptionist, sales)", "s": "aivoice_products", "i": "phone" },
-            { "l": "Talk to someone", "s": "talk", "i": "message-circle" }
-        ]
-    },
-    "whatsapp_auto": {
-        "bot": "We integrate an AI agent directly into your WhatsApp Business. It responds to every message instantly, qualifies the lead, and alerts you only when someone is ready to pay.",
-        "r": [
-            { "l": "See AI Consultancy", "s": "pkg_ai", "i": "package" },
-            { "l": "Talk to someone", "s": "talk", "i": "message-circle" }
+            { "l": "Start a booking request", "url": "https://dnservices.priscadezigns.org/carpentry-booking.html", "i": "tool" },
+            { "l": "Chat on WhatsApp instead", "url": "https://wa.me/18687405689?text=Hi%2C%20I%27d%20like%20a%20carpentry%20quote.", "i": "message-circle" },
+            { "l": "\u2190 Back", "s": "start", "i": "arrow-left" }
         ]
     },
     "how_it_works": {
-        "bot": "We connect an AI agent to your WhatsApp, website, or email. It greets every lead, asks qualifying questions, routes serious buyers to you, and follows up with everyone else automatically. Setup takes 2–4 weeks.",
+        "bot": "Getting started is simple:\n1. Tell Us \u2014 share whether you need a taxi journey or carpentry work\n2. Plan It \u2014 confirm timing, location, scope, and requirements\n3. Get It Done \u2014 move forward with a confirmed journey or agreed project\n\nEach booking request goes to WhatsApp for confirmation \u2014 it's a request, not an automatic booking.",
         "r": [
-            { "l": "See AI Consultancy", "s": "pkg_ai", "i": "package" },
-            { "l": "Talk to someone", "s": "talk", "i": "message-circle" }
+            { "l": "Book a Taxi", "s": "svc_taxi", "i": "car" },
+            { "l": "Book Carpentry", "s": "svc_carpentry", "i": "tool" },
+            { "l": "\u2190 Back", "s": "start", "i": "arrow-left" }
         ]
     },
     "talk": {
-        "bot": "The best way to get moving is a direct handshake on WhatsApp. I've prepared a direct link for you to message the management team.",
+        "bot": "DN Services is ready on WhatsApp for bookings or questions.",
         "wa": true
-    },
-    "pkg_templates": { "bot": "Choose from our high-fidelity templates — live in 24-48hrs.", "pkg": "templates" },
-    "pkg_standard": { "bot": "Professional custom web packages for growing brands.", "pkg": "standard" },
-    "pkg_ecommerce": { "bot": "Scalable e-commerce solutions for global selling.", "pkg": "ecommerce" },
-    "pkg_ai": {
-        "bot": "AI Consultancy at Prisca Dezigns covers two things: AI Employees (department-based automation) and AI Voice (voice agents). Which one fits what you're trying to automate?",
-        "r": [
-            { "l": "AI Employees (9 departments)", "s": "aidata_products", "i": "database" },
-            { "l": "AI Voice (receptionist, sales)", "s": "aivoice_products", "i": "phone" },
-            { "l": "Start Free Audit", "url": "https://priscadezigns.org/audit/", "i": "clipboard-check" },
-            { "l": "Talk to someone", "s": "talk", "i": "message-circle" }
-        ]
-    },
-    "aidata_products": {
-        "bot": "AI Employees is organised by department — meet the specialist AI Employee for each:\n\n<b>AI Administration — Alana</b>\nCross-department admin coordinator. Handles inbox triage, scheduling, follow-ups, and connects to your other AI Employees for one unified daily brief.\n\n<b>AI Human Resources — Alice</b>\nManages onboarding, leave tracking, application screening, and TT payroll compliance.\n\n<b>AI Finance — Jamal</b>\nReconciles transactions, surfaces discrepancies early, and generates monthly financial reports automatically.\n\n<b>AI Health & Safety — Luna</b>\nMonitors incident reports, distributes toolbox talks, tracks hazard logs, and audits compliance.\n\n<b>AI Information Technology — Sunil</b>\nHandles help desk requests, validates data quality, and monitors your systems 24/7.\n\n<b>AI Marketing — Dean</b>\nManages marketing data, scores leads, and delivers campaign performance reporting.\n\n<b>AI Quality Assurance — Zara</b>\nLogs inspections, tracks non-conformances, and monitors your compliance posture continuously.\n\n<b>AI Production — Chan</b>\nLogs output data, tracks inventory, schedules preventive maintenance, and analyses production trends.\n\n<b>AI Customer Relations — Sierra</b>\nHandles WhatsApp, email, and website chat around the clock — qualifies leads, books appointments, and follows up automatically.\n\nWant a personalised recommendation? Start your free audit at priscadezigns.org/audit, or message us on WhatsApp.",
-        "pkg": "aidata",
-        "r": [
-            { "l": "Start Free Audit", "url": "https://priscadezigns.org/audit/", "i": "clipboard-check" },
-            { "l": "← Back", "s": "pkg_ai", "i": "arrow-left" }
-        ]
-    },
-    "aivoice_products": {
-        "bot": "AI Voice covers seven specific roles:\n• AI Receptionist\n• AI Customer Service\n• AI Sales Rep\n• AI Scheduler\n• AI Survey & Feedback\n• AI Accounts Receivable\n• AI HSE Assistant\n\nThe pricing below represents the complexity of the agent/employee you choose. Want a personalised recommendation? Start your free audit at priscadezigns.org/audit, or message us on WhatsApp.",
-        "pkg": "aivoice",
-        "r": [
-            { "l": "Start Free Audit", "url": "https://priscadezigns.org/audit/", "i": "clipboard-check" },
-            { "l": "← Back", "s": "pkg_ai", "i": "arrow-left" }
-        ]
-    },
-    "aichannel_products": {
-        "bot": "AI Customer Relations covers three channels, and each one runs the same two AI Employees — AI Customer Service and AI Lead Generation:\n• Website Automation\n• WhatsApp Automation\n• Email Automation\n\nThe pricing below represents the complexity of the agent/employee you choose. Want a personalised recommendation? Start your free audit at priscadezigns.org/audit, or message us on WhatsApp.",
-        "pkg": "aichannel",
-        "r": [
-            { "l": "Start Free Audit", "url": "https://priscadezigns.org/audit/", "i": "clipboard-check" },
-            { "l": "← Back", "s": "pkg_ai", "i": "arrow-left" }
-        ]
-    },
-    "pkg_aidata": { "bot": "AI Employees — hire specialist AI staff across 9 departments (Admin, HR, Finance, Health & Safety, IT, Marketing, Quality Assurance, Production, Customer Relations), each on the same tier pricing.", "pkg": "aidata" },
-    "pkg_aivoice": { "bot": "AI Voice — human-grade voice agents for reception, sales, lead qualification, and survey/feedback, answering calls 24/7.", "pkg": "aivoice" },
-    "pkg_aichannel": { "bot": "AI Customer Relations — autonomous email, website, and WhatsApp lead conversion pipelines, working your inbox and chats around the clock.", "pkg": "aichannel" },
-    "pkg_continuity": { "bot": "Keep your digital infrastructure peak & secure.", "pkg": "continuity" }
+    }
 };
 
 let hist = [];
@@ -1140,6 +958,7 @@ function addQR(label, step, icon, url){
         'code': '<path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>',
         'trending-down': '<path d="M23 18l-9.5-9.5L8.5 14 1 6.5"/><path d="M16 18h7v-7"/>',
         'shopping-bag': '<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/>',
+        'calendar': '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
         'tool': '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
         'check-circle': '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>',
         'message-circle': '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.5 8.5 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
@@ -1237,9 +1056,13 @@ window.chatSend = function(){
     });
 };
 
-if(window.location.pathname.includes('/services')){
-    setTimeout(() => { if(!open) toggleChat(); }, 8000);
-}
+// Auto-open on page load, site-wide, so the welcome offer is seen immediately.
+setTimeout(() => {
+    if(!open) {
+        toggleChat();
+        selectAgent('sierra');
+    }
+}, 1200);
 
 // --- Voice Picker: visit any page with ?voicepicker=1 to open this ---
 if (window.location.search.includes('voicepicker=1')) {
@@ -1258,7 +1081,7 @@ if (window.location.search.includes('voicepicker=1')) {
 
         voices.forEach(function(v) {
             var row = document.createElement('div');
-            row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:12px;border:1px solid #eee;border-radius:12px;margin-bottom:8px;' + (v.name === currentSaved ? 'border-color:#9d50bb;background:#faf5ff;' : '');
+            row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:12px;border:1px solid #eee;border-radius:12px;margin-bottom:8px;' + (v.name === currentSaved ? 'border-color:#c59b4f;background:#fdf8ee;' : '');
 
             var label = document.createElement('div');
             label.style.cssText = 'flex:1;font-size:14px;';
@@ -1266,7 +1089,7 @@ if (window.location.search.includes('voicepicker=1')) {
 
             var playBtn = document.createElement('button');
             playBtn.textContent = '▶ Hear it';
-            playBtn.style.cssText = 'padding:8px 14px;border-radius:8px;border:1px solid #9d50bb;background:#fff;color:#9d50bb;font-weight:bold;cursor:pointer;';
+            playBtn.style.cssText = 'padding:8px 14px;border-radius:8px;border:1px solid #c59b4f;background:#fff;color:#c59b4f;font-weight:bold;cursor:pointer;';
             playBtn.onclick = function() {
                 window.speechSynthesis.cancel();
                 var u = new SpeechSynthesisUtterance("Hi! I'm the Prisca Dezigns assistant. This is what I sound like.");
@@ -1276,7 +1099,7 @@ if (window.location.search.includes('voicepicker=1')) {
 
             var useBtn = document.createElement('button');
             useBtn.textContent = 'Use this voice';
-            useBtn.style.cssText = 'padding:8px 14px;border-radius:8px;border:none;background:#9d50bb;color:#fff;font-weight:bold;cursor:pointer;';
+            useBtn.style.cssText = 'padding:8px 14px;border-radius:8px;border:none;background:#c59b4f;color:#fff;font-weight:bold;cursor:pointer;';
             useBtn.onclick = function() {
                 localStorage.setItem('pd_chosen_voice', v.name);
                 preferredVoice = v;
