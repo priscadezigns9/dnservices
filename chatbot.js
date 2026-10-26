@@ -226,7 +226,7 @@
     <div id="pd-chat-window">
         <div class="chat-hdr">
             <div class="chat-avatar">
-                <img src="https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/logos/PRISCA_ICON_LOGO_tight.png" alt="P">
+                <img src="/assets/dnservices-sierra-avatar.jpg" alt="P">
             </div>
             <div style="flex:1">
                 <div class="chat-hdr-name">Sierra</div>
@@ -247,14 +247,14 @@
         <div id="agent-selector">
             <div class="sel-title">Who would you like to speak with?</div>
             <div class="agent-sel-card" onclick="selectAgent('sierra')">
-                <img src="https://raw.githubusercontent.com/priscadezigns9/dnservices/main/assets/dnservices-crown-mark-avatar.png" alt="Sierra" onerror="this.src='https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/logos/PRISCA_ICON_LOGO_tight.png'">
+                <img src="/assets/dnservices-sierra-avatar.jpg" alt="Sierra" onerror="this.src='/assets/dnservices-sierra-avatar.jpg'">
                 <div>
                     <div class="asc-name">Sierra</div>
                     <div class="asc-role">Customer Relations — Chat</div>
                 </div>
             </div>
             <div class="agent-sel-card" onclick="selectAgent('drew')">
-                <img src="https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/assets/drew_headshot.jpg" alt="Drew" onerror="this.src='https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/logos/PRISCA_ICON_LOGO_tight.png'">
+                <img src="/assets/dnservices-drew-avatar.jpg" alt="Drew" onerror="this.src='/assets/dnservices-sierra-avatar.jpg'">
                 <div>
                     <div class="asc-name">Drew</div>
                     <div class="asc-role">Sales Representative — Voice</div>
@@ -263,7 +263,7 @@
         </div>
         <!-- Drew Vapi Voice Panel -->
         <div id="drew-panel">
-            <img src="https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/assets/drew_headshot.jpg" alt="Drew" style="width:72px;height:72px;border-radius:20px;object-fit:cover;box-shadow:0 8px 24px rgba(197,155,79,0.25);" onerror="this.src='https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/logos/PRISCA_ICON_LOGO_tight.png'">
+            <img src="/assets/dnservices-drew-avatar.jpg" alt="Drew" style="width:72px;height:72px;border-radius:20px;object-fit:cover;box-shadow:0 8px 24px rgba(197,155,79,0.25);" onerror="this.src='/assets/dnservices-sierra-avatar.jpg'">
             <div style="font-size:1.1rem;font-weight:800;color:#1e1b4b;font-family:'Inter',sans-serif;">Drew</div>
             <div id="drew-soundwave"><span></span><span></span><span></span><span></span><span></span></div>
             <div id="drew-status">Ready to connect</div>
@@ -808,7 +808,7 @@ window.enterDrewText = function() {
     if (hdrName) hdrName.textContent = 'Drew';
     if (hdrStatus) hdrStatus.innerHTML = '<div class="chat-sdot"></div> Sales Representative';
     if (switchLabel) switchLabel.textContent = 'SIERRA';
-    if (avatar) avatar.src = 'https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/assets/drew_headshot.jpg';
+    if (avatar) avatar.src = '/assets/dnservices-drew-avatar.jpg';
 
     // Reset history so Drew starts fresh at his own menu, regardless of
     // whatever step Sierra's conversation was on.
@@ -842,7 +842,7 @@ window.selectAgent = function(agent) {
         if (hdrName) hdrName.textContent = 'Sierra';
         if (hdrStatus) hdrStatus.innerHTML = '<div class="chat-sdot"></div> Active Agent';
         if (switchLabel) switchLabel.textContent = 'DREW';
-        if (avatar) avatar.src = 'https://raw.githubusercontent.com/priscadezigns9/dnservices/main/assets/dnservices-crown-mark-avatar.png';
+        if (avatar) avatar.src = '/assets/dnservices-sierra-avatar.jpg';
         if (hist.length === 0) go('start');
     } else if (agent === 'drew') {
         if (sierraUi) sierraUi.style.display = 'none';
@@ -854,7 +854,7 @@ window.selectAgent = function(agent) {
         if (hdrName) hdrName.textContent = 'Drew';
         if (hdrStatus) hdrStatus.innerHTML = '<div class="chat-sdot"></div> Sales Representative';
         if (switchLabel) switchLabel.textContent = 'SIERRA';
-        if (avatar) avatar.src = 'https://raw.githubusercontent.com/priscadezigns9/priscadezignswebsite/main/assets/drew_headshot.jpg';
+        if (avatar) avatar.src = '/assets/dnservices-drew-avatar.jpg';
         drewInitVapi();
     }
 };
